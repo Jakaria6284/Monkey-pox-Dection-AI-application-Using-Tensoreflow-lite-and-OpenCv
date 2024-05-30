@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:background="#006769"
+    android:background="#030D43"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -29,7 +29,7 @@
             android:layout_marginBottom="16dp"
             android:text="Capture"
             android:textColor="@color/white"
-            android:background="@drawable/color"
+            android:background="@drawable/colorw"
             android:textAllCaps="false"
             android:textSize="21sp"
             android:elevation="40dp"
@@ -48,7 +48,7 @@
             android:layout_marginBottom="16dp"
             android:text="Gallery"
             android:textColor="@color/white"
-            android:background="@drawable/color"
+            android:background="@drawable/colorw"
             android:elevation="40dp"
             android:textAllCaps="false"
             android:textSize="21sp"
@@ -81,7 +81,7 @@
             android:scaleType="centerCrop"
             app:lottie_autoPlay="true"
             app:lottie_loop="true"
-            app:lottie_rawRes="@raw/animationnnn" />
+            app:lottie_rawRes="@raw/animation" />
 
 
     </LinearLayout>

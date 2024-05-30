@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
             inputBuffer.order(ByteOrder.nativeOrder());
             preprocessImage(image, inputBuffer);
 
-            float[][] output = new float[1][17]; // Adjust the size according to your model output
-            ByteBuffer outputBuffer = ByteBuffer.allocateDirect(4 * 17); // 17 floats, 4 bytes per float
+            float[][] output = new float[1][10]; // Adjust the size according to your model output
+            ByteBuffer outputBuffer = ByteBuffer.allocateDirect(4 * 10); // 17 floats, 4 bytes per float
             outputBuffer.order(ByteOrder.nativeOrder());
 
             model.run(inputBuffer, outputBuffer);
@@ -128,7 +128,8 @@ public class MainActivity extends AppCompatActivity {
 
             int maxIndex = argmax(output[0]);
             float confidenceValue = output[0][maxIndex];
-            String[] classes = {"Tomato_healthy", "Tomato_Tomato_mosaic_virus", "Tomato___Tomato_Yellow_Leaf_Curl_Virus", "Tomato___Target_Spot", "Tomato___Spider_mites Two-spotted_spider_mite", "Tomato___Septoria_leaf_spot", "Tomato___Leaf_Mold", "Tomato___Late_blight", "Tomato___Early_blight", "Tomato___Bacterial_spot", "Potato___healthy", "Potato___Late_blight", "Potato___Early_blight", "Apple___healthy", "Apple___Cedar_apple_rust", "Apple___Black_rot"};
+         //   String[] classes = {"Tomato_healthy", "Tomato_Tomato_mosaic_virus", "Tomato___Tomato_Yellow_Leaf_Curl_Virus", "Tomato___Target_Spot", "Tomato___Spider_mites Two-spotted_spider_mite", "Tomato___Septoria_leaf_spot", "Tomato___Leaf_Mold", "Tomato___Late_blight", "Tomato___Early_blight", "Tomato___Bacterial_spot", "Potato___healthy", "Potato___Late_blight", "Potato___Early_blight", "Apple___healthy", "Apple___Cedar_apple_rust", "Apple___Black_rot"};
+            String[] classes = {"Eczema","Melanoma"," Atopic Dermatitis","Basal Cell Carcinom","Melanocytic Nevi (NV)"," Benign Keratosis-like Lesions (BKL)","Psoriasis","Seborrheic Keratoses","Tinea Ringworm","Warts Molluscum "};
             String predictedClass = classes[maxIndex];
 
             result.setText(predictedClass);
@@ -168,7 +169,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private ByteBuffer loadModelFile() throws IOException {
-        AssetFileDescriptor fileDescriptor = getAssets().openFd("model.tflite");
+        AssetFileDescriptor fileDescriptor = getAssets().openFd("model_unquant.tflite");
         FileInputStream inputStream = new FileInputStream(fileDescriptor.getFileDescriptor());
         FileChannel fileChannel = inputStream.getChannel();
         long startOffset = fileDescriptor.getStartOffset();
